@@ -1,33 +1,41 @@
 import argparse, os, re
 
-
 EXT_CREATE_TOKEN = 'Ext.create\((.*?)\)'
-#EXT_CREATE_TOKEN = '\((.*?)\)'
-SINGLE_QUOTE_TOKEN = "'.*'"
-# FIXME: Ext.createWidget
+INDEX_HTML_TEMPLATE = '''
+<html>
+   <head>
+      <script type="text/javascript" src="%s"></script>
+   <head>
+   <body>
+      Index page that simulates your webapp.
+   </body>
+</html
+'''
 
 def process(path):
    ext_components = set()
    for (dirpath, dirnames, filenames) in os.walk(path):
-      #print dirpath, dirnames, filenames
       for filename in filenames:
          jsfile = '%s/%s' % (dirpath, filename)
          
          with open(jsfile, 'r') as f:
             contents = f.read();
-            #print contents
             matches =  re.search(EXT_CREATE_TOKEN,contents,re.DOTALL)
             if matches:
                for match in matches.groups():
                   # at this point match contains XXX in Ext.create(XXX)
-                  #print match, '\n'
-                  #component = match[match.find("'")
                   ext_component_quoted = match.split(',')[0].strip()
-                  #print ext_component_quoted
                   # add, getting rid of quotes
                   ext_components.add(ext_component_quoted[1:-1])
-                  
-   print ext_components
+
+   # create the fake JS file                  
+   with open('app.js', 'w') as f:
+      for ext_component in ext_components:
+         f.write("Ext.create('%s');\n" % ext_component)
+         
+   with open('index.html', 'w') as f:
+      pass
+         
    
 
 if __name__ == "__main__":
