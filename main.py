@@ -5,6 +5,7 @@ INDEX_HTML_TEMPLATE = '''
 <html>
    <head>
       <script type="text/javascript" src="%s"></script>
+      <script type="text/javascript" src="app.js"></script>
    <head>
    <body>
       Index page that simulates your webapp.
@@ -12,7 +13,7 @@ INDEX_HTML_TEMPLATE = '''
 </html
 '''
 
-def process(path):
+def process(path, extjs_main_file = 'ext.js'):
    ext_components = set()
    for (dirpath, dirnames, filenames) in os.walk(path):
       for filename in filenames:
@@ -34,7 +35,7 @@ def process(path):
          f.write("Ext.create('%s');\n" % ext_component)
          
    with open('index.html', 'w') as f:
-      pass
+      f.write(INDEX_HTML_TEMPLATE % extjs_main_file)
          
    
 
