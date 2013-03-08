@@ -1,0 +1,13 @@
+Q: How to generate the openlayers-custom.cfg file?
+A: (TODO)
+
+
+Q: What to do with the resulting openlayers-custom.cfg file?
+A: 1. Download OpenLayers 2.12 bundle: http://openlayers.org/download/OpenLayers-2.12.zip
+   2. Unzip it in a temporary location, referred to  ${ol} from now on
+   3. Copy openlayers-custom.cfg file into ${ol}/build
+   4. Run 
+        python buildUncompressed.py openlayers-custom
+   5. If everything went well, OpenLayers.js file will be created.
+   6. Run this uncompressed file through a specialized JS minifier, e.g. Closure Compiler or UglifyJS (they're ~20% more effective than the JSMin used by build.py script)
+

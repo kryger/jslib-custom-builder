@@ -41,7 +41,8 @@ def process(path, buildconfigfile = 'openlayers-custom.cfg'):
       for classname in ol_classes:
          f.write('%s.js\n' % classname.replace('.', '/'))
       f.write('[exclude]\n')
-         
+      print 'Wrote %s file with %i entries. Follow the instructions in docs/OpenLayers.txt for further help' % (buildconfigfile, len(ol_classes))
+   
       
    
 
