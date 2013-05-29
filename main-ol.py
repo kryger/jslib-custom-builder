@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import argparse, os, re
 
 #OPENLAYERS_TOKEN = 'OpenLayers(\\.[A-Z][a-z]+)'
