@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import argparse, os, re
 
-#OPENLAYERS_TOKEN = 'OpenLayers(\\.[A-Z][a-z]+)'
 OPENLAYERS_TOKEN = 'OpenLayers\\.([\\w\\.]+)'
 
 def process(path, buildconfigfile = 'openlayers-custom.cfg'):
@@ -15,10 +14,7 @@ def process(path, buildconfigfile = 'openlayers-custom.cfg'):
             contents = f.read();
             matches =  re.findall(OPENLAYERS_TOKEN,contents,re.DOTALL)
             for match in matches:
-               #indx = match.find('\\.[a-z]')
-               #print match, classname, indx
                p = re.compile('\\.[a-z]')
-               #print match
                
                classname = match
                endindex = None
@@ -43,7 +39,7 @@ def process(path, buildconfigfile = 'openlayers-custom.cfg'):
       for classname in ol_classes:
          f.write('%s.js\n' % classname.replace('.', '/'))
       f.write('[exclude]\n')
-      print 'Wrote %s file with %i entries. Follow the instructions in docs/OpenLayers.txt for further help' % (buildconfigfile, len(ol_classes))
+      print 'Wrote %s file with %i entries.' % (buildconfigfile, len(ol_classes))
    
       
    

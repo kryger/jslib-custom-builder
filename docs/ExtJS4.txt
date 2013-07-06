@@ -1,0 +1,4 @@
+Q: How to prepare the build file?
+A: 1. Download the ExtJS bundle (http://www.sencha.com/products/extjs/download/)
+   2. Unzip it to a temporary location, copy the extjs.js and src/ directory into this app's folder
+   3. 
